@@ -2,9 +2,10 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode({ 400, 400 }), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "HardGam");
+    sf::RectangleShape sprite(sf::Vector2f(40.0, 40.0));
+    sprite.setFillColor(sf::Color::Green);
+
 
     while (window.isOpen())
     {
@@ -14,8 +15,26 @@ int main()
                 window.close();
         }
 
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
+        {
+            sprite.move(sf::Vector2f(0.0, 0.035));
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
+        {
+            sprite.move(sf::Vector2f(0.0, -0.035));
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
+        {
+            sprite.move(sf::Vector2f(0.035, 0.0));
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
+        {
+            sprite.move(sf::Vector2f(-0.035, 0.0));
+        }
+
         window.clear();
-        window.draw(shape);
+        window.draw(sprite);
         window.display();
+
     }
 }
