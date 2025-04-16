@@ -17,19 +17,19 @@ int main()
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
         {
-            sprite.move(sf::Vector2f(0.0, 0.035));
+            sprite.move(sf::Vector2f(0.0, 0.11));
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
         {
-            sprite.move(sf::Vector2f(0.0, -0.035));
+            sprite.move(sf::Vector2f(0.0, -0.11));
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
         {
-            sprite.move(sf::Vector2f(0.035, 0.0));
+            sprite.move(sf::Vector2f(0.11, 0.0));
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
         {
-            sprite.move(sf::Vector2f(-0.035, 0.0));
+            sprite.move(sf::Vector2f(-0.11, 0.0));
         }
 
         window.clear();
