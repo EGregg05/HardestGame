@@ -5,6 +5,12 @@ int main()
     sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "HardGam");
     Sprite* player = new Sprite;
 
+    sf::Texture texture;
+    texture.loadFromFile("Background.png");
+    sf::Vector2u size = texture.getSize();
+    sf::Sprite background(texture);
+    
+
     while (window.isOpen())
     {
         while (const std::optional event = window.pollEvent())
@@ -13,26 +19,39 @@ int main()
                 window.close();
         }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) 
         {
-            player->updateY(0.11);
+            if (player->getY() < 540.0f)
+            {
+                player->updateY(0.11f);
+            }
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
         {
-            player->updateY(-0.11);
+            if (player->getY() > 20.0f)
+            {
+                player->updateY(-0.11f);
+            }
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
         {
-            player->updateX(0.11);
+            if (player->getX() < 740.0f)
+            {
+                player->updateX(0.11f);
+            }
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
         {
-            player->updateX(-0.11);
+            if (player->getX() > 20.0f)
+            {
+                player->updateX(-0.11f);
+            }
         }
 
 
 
         window.clear();
+        window.draw(background);
         window.draw(player->getSprite());
         window.display();
 
