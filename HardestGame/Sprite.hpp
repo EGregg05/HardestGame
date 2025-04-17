@@ -10,7 +10,7 @@ public:
 		this->x = 0.0f;
 		this->y = 0.0f;
 		this->object.setSize(sf::Vector2f(40.0, 40.0));
-		this->object.setFillColor(sf::Color::Red);
+		this->object.setFillColor(sf::Color::Green);
 		this->object.setPosition(sf::Vector2f(0.0, 0.0));
 	}
 

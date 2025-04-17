@@ -1,9 +1,12 @@
 #include "Sprite.hpp"
+#include <iostream>
 
 int main()
 {
     sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "HardGam");
     Sprite* player = new Sprite;
+
+ 
 
     while (window.isOpen())
     {
