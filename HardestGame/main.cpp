@@ -3,9 +3,7 @@
 int main()
 {
     sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "HardGam");
-    sf::RectangleShape sprite(sf::Vector2f(40.0, 40.0));
-    sprite.setFillColor(sf::Color::Green);
-
+    Sprite* player = new Sprite;
 
     while (window.isOpen())
     {
@@ -17,23 +15,25 @@ int main()
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
         {
-            sprite.move(sf::Vector2f(0.0, 0.11));
+            player->updateY(0.11);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
         {
-            sprite.move(sf::Vector2f(0.0, -0.11));
+            player->updateY(-0.11);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
         {
-            sprite.move(sf::Vector2f(0.11, 0.0));
+            player->updateX(0.11);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
         {
-            sprite.move(sf::Vector2f(-0.11, 0.0));
+            player->updateX(-0.11);
         }
 
+
+
         window.clear();
-        window.draw(sprite);
+        window.draw(player->getSprite());
         window.display();
 
     }
