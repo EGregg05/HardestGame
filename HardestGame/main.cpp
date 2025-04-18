@@ -6,6 +6,7 @@
 #include <ctime>
 #include <cstdlib>
 #include "Sprite.hpp"
+#include "Level.hpp"
 using std::cout;
 
 int main()
@@ -15,8 +16,7 @@ int main()
 
     //Background
     sf::Texture texture;
-    texture.loadFromFile("Background.png");
-    sf::Vector2u size = texture.getSize();
+    texture.loadFromFile("BackgroundWEnds.png");
     sf::Sprite background(texture);
 
     // declare the fonts and declare the different texts
@@ -107,79 +107,38 @@ int main()
                 }
             }
 
+            // Play Loop
             if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && play) // we may need to implement a "pause" or a back button to the gameplay later
             {
                 sf::Clock clock;
-                float displaytime = 3.0f; // time for prelevel text duration
-                bool showLevelText = true;
+                float displaytime = 2.0f; // time for prelevel text duration
+                int levelTracker = 1;
+                bool levelCheck;
+
                 while (window.isOpen())
                 {
-                    while (const std::optional event = window.pollEvent())
+                    switch (levelTracker)
                     {
-                        if (event->is<sf::Event::Closed>())
-                            window.close();
-                    }
+                    case 1:
+                        levelCheck = levelOne(window, player, background, LvlOneMsg);
+                        if (levelCheck) 
+                        {
+                            levelTracker++;
+                            clock.restart();
+                        }
+                        break;
 
-                    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
-                    {
-                        if (player->getY() < 540.0f) //prevents player from leaving screen vertically
-                        {
-                            player->updateY(0.11f);// player speed down
-                        }
-                    }
-                    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
-                    {
-                        if (player->getY() > 20.0f) //prevents player from leaving screen vertically
-                        {
-                            player->updateY(-0.11f);// player speed up
-                        }
-                    }
-                    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
-                    {
-                        if (player->getX() < 740.0f) //prevents player from leaving screen horizontaly
-                        {
-                            player->updateX(0.11f);// player speed right
-                        }
-                    }
-                    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
-                    {
-                        if (player->getX() > 20.0f)//prevents player from leaving screen horizontaly
-                        {
-                            player->updateX(-0.11f);// player speed left
-                        }
-                    }
-                    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) //check for closing game
-                    {
-                        window.close(); //close game
-                    }
+                    case 2:
+                        // call levelTwo() here
+                        break;
 
-                    //Shows text before a level for certain time
-                    if (showLevelText)
-                    {
-                        if (clock.getElapsedTime().asSeconds() < displaytime)
-                        {
-                            window.clear();
-                            window.draw(LvlOneMsg); // draws the msg
-                            window.display(); // displays
-
-                            continue; //doesnt do anything else til time has passed
-                        }
-                        else
-                        {
-                            LvlOneMsg.setString("");// removes the text
-                            showLevelText = false; //done showing message
-                        }
+                        // etc.
                     }
-
-                    window.clear();
-                    window.draw(background);
-                    window.draw(player->getSprite());
-                    window.display();
-
                 }
             }
-
-             if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && rules) //access the rules tab
+            
+            // Rules loop
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && rules) //access the rules tab
             {
                 // setting the texts for the rules
                 text3.setCharacterSize(60);
@@ -250,10 +209,12 @@ int main()
                     window.display();
                 }
             }
-             if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && exit) // end the program
-             {
-                 window.close();
-             }
+
+            //Exit 
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && exit) // end the program
+            {
+                window.close();
+            }
            
         }
       

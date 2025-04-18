@@ -1,4 +1,4 @@
 #pragma once
 #include "Sprite.hpp"
-
-void setLevelOne();
+ 
+bool levelOne(sf::RenderWindow& window, Sprite* player, sf::Sprite& backgroundTexture, sf::Text& lvlMsg);
