@@ -149,6 +149,10 @@
   <ItemGroup>
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="Sprite.hpp" />
+    <ClInclude Include="Wall.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="arial.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
