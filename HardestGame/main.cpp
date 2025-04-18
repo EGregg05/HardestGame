@@ -21,7 +21,7 @@ int main()
 
     // declare the fonts and declare the different texts
     sf::Font font;
-    font.openFromFile("C:\\Users\\ajayr\\source\\repos\\HardestGame\\HardestGame\\arial_narrow_7.ttf");
+    font.openFromFile("arial_narrow_7.ttf");
     sf::Text text(font)/*worlds hardest game*/, text2(font)/*Play*/, text3(font)/*Rules*/
         , text4(font)/*Exit*/, text5(font)/*Rule 1*/, text6(font)/*Rule 2*/, text7(font) /*Back*/; //different texts
 
@@ -52,10 +52,6 @@ int main()
 
     //declare all the bools to allow us to click on the words
     bool play = false, rules = false, exit = false, back = false, backbounds = false;
-   
-
-   
-   
 
     while (window.isOpen())
     {
@@ -110,6 +106,7 @@ int main()
                     exit = false;
                 }
             }
+
             if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && play) // we may need to implement a "pause" or a back button to the gameplay later
             {
                 sf::Clock clock;
@@ -174,7 +171,6 @@ int main()
                         }
                     }
 
-                    
                     window.clear();
                     window.draw(background);
                     window.draw(player->getSprite());
@@ -182,6 +178,7 @@ int main()
 
                 }
             }
+
              if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && rules) //access the rules tab
             {
                 // setting the texts for the rules
@@ -253,12 +250,10 @@ int main()
                     window.display();
                 }
             }
-            if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && exit) // end the program
-            {
-                window.close();
-            }
-
-
+             if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && exit) // end the program
+             {
+                 window.close();
+             }
            
         }
       
