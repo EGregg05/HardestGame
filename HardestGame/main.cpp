@@ -54,9 +54,7 @@ int main()
     bool play = false, rules = false, exit = false, back = false, backbounds = false;
    
 
-    sf::Clock clock;
-    float displaytime = 3.0f; // time for prelevel text duration
-    bool showLevelText = true;
+   
    
 
     while (window.isOpen())
@@ -114,6 +112,9 @@ int main()
             }
             if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && play) // we may need to implement a "pause" or a back button to the gameplay later
             {
+                sf::Clock clock;
+                float displaytime = 3.0f; // time for prelevel text duration
+                bool showLevelText = true;
                 while (window.isOpen())
                 {
                     while (const std::optional event = window.pollEvent())
