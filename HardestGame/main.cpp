@@ -6,7 +6,6 @@
 #include <ctime>
 #include <cstdlib>
 #include "Sprite.hpp"
-#include <iostream>
 using std::cout;
 
 int main()
@@ -45,7 +44,12 @@ int main()
     text4.setFillColor(sf::Color::Red); //text color
     text4.setPosition(sf::Vector2f(350, 375)); // text position
     
-    
+    sf::Text LvlOneMsg(font); // create a text with the font
+    LvlOneMsg.setString("You Dead Ass aint \nready for this shit");// the text
+    LvlOneMsg.setCharacterSize(48); // text size in pixels
+    LvlOneMsg.setFillColor(sf::Color::White); // Text color
+    LvlOneMsg.setPosition(sf::Vector2f(200.f, 200.f)); // location for the text
+
     //declare all the bools to allow us to click on the words
     bool play = false, rules = false, exit = false, back = false, backbounds = false;
    
@@ -120,20 +124,61 @@ int main()
 
                     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
                     {
-                        player->updateY(0.11);
+                        if (player->getY() < 540.0f) //prevents player from leaving screen vertically
+                        {
+                            player->updateY(0.11f);// player speed down
+                        }
                     }
                     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
                     {
-                        player->updateY(-0.11);
+                        if (player->getY() > 20.0f) //prevents player from leaving screen vertically
+                        {
+                            player->updateY(-0.11f);// player speed up
+                        }
                     }
                     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
                     {
-                        player->updateX(0.11);
+                        if (player->getX() < 740.0f) //prevents player from leaving screen horizontaly
+                        {
+                            player->updateX(0.11f);// player speed right
+                        }
                     }
                     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
                     {
-                        player->updateX(-0.11);
+                        if (player->getX() > 20.0f)//prevents player from leaving screen horizontaly
+                        {
+                            player->updateX(-0.11f);// player speed left
+                        }
                     }
+                    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) //check for closing game
+                    {
+                        window.close(); //close game
+                    }
+
+                    //Shows text before a level for certain time
+                    if (showLevelText)
+                    {
+                        if (clock.getElapsedTime().asSeconds() < displaytime)
+                        {
+                            window.clear();
+                            window.draw(LvlOneMsg); // draws the msg
+                            window.display(); // displays
+
+                            continue; //doesnt do anything else til time has passed
+                        }
+                        else
+                        {
+                            LvlOneMsg.setString("");// removes the text
+                            showLevelText = false; //done showing message
+                        }
+                    }
+
+                    
+                    window.clear();
+                    window.draw(background);
+                    window.draw(player->getSprite());
+                    window.display();
+
                 }
             }
              if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && rules) //access the rules tab
@@ -213,56 +258,7 @@ int main()
             }
 
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) //check for closing game
-            {
-                window.close(); //close game
-            }
-
-            //Shows text before a level for certain time
-            if (showLevelText)
-            {
-                if (clock.getElapsedTime().asSeconds() < displaytime)
-                {
-                    window.draw(LvlOneMsg); // draws the msg
-                    window.display(); // displays
-
-                    continue; //doesnt do anything else til time has passed
-                }
-                else
-                {
-                    LvlOneMsg.setString("");// removes the text
-                    showLevelText = false; //done showing message
-                }
-            }
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) 
-            {
-                if (player->getY() < 540.0f) //prevents player from leaving screen vertically
-                {
-                    player->updateY(0.11f);// player speed down
-                }
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
-            {
-                if (player->getY() > 20.0f) //prevents player from leaving screen vertically
-                {
-                    player->updateY(-0.11f);// player speed up
-                }
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
-            {
-                if (player->getX() < 740.0f) //prevents player from leaving screen horizontaly
-                {
-                    player->updateX(0.11f);// player speed right
-                }
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
-            {
-                if (player->getX() > 20.0f)//prevents player from leaving screen horizontaly
-                {
-                    player->updateX(-0.11f);// player speed left
-                }
-            }
+           
         }
       
         window.clear();
