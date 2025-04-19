@@ -18,8 +18,11 @@ int main()
 
     //Background
     sf::Texture texture;
-    texture.loadFromFile("BackgroundWEnds.png");
-    sf::Sprite background(texture);
+    texture.loadFromFile("background.png");
+    sf::Sprite gameBackground(texture);
+    sf::Texture texture2;
+    texture2.loadFromFile("MenuBackground.png");
+    sf::Sprite menuBackground(texture2);
 
     // declare the fonts and declare the different texts
     sf::Font font;
@@ -29,28 +32,28 @@ int main()
 
     //define the texts (we may want to add a text class later)
     text.setString("Worlds Hardest Game");
-    text.setCharacterSize(60); // in pixels
+    text.setCharacterSize(70); // in pixels
     text.setFillColor(sf::Color::Red);
-    text.setPosition(sf::Vector2f(130, 50));
+    text.setPosition(sf::Vector2f(75, 50));
     text.setStyle(sf::Text::Bold | sf::Text::Underlined);
     text2.setString("Play");
-    text2.setCharacterSize(40); // in pixels
+    text2.setCharacterSize(50); // in pixels
     text2.setFillColor(sf::Color::Red);
-    text2.setPosition(sf::Vector2f(350, 175));
+    text2.setPosition(sf::Vector2f(340, 180));
     text3.setString("Rules");
-    text3.setCharacterSize(40); // in pixels
+    text3.setCharacterSize(50); // in pixels
     text3.setFillColor(sf::Color::Red);
-    text3.setPosition(sf::Vector2f(350, 275));
+    text3.setPosition(sf::Vector2f(340, 300));
     text4.setString("Exit");
-    text4.setCharacterSize(40); // in pixels
+    text4.setCharacterSize(50); // in pixels
     text4.setFillColor(sf::Color::Red); //text color
-    text4.setPosition(sf::Vector2f(350, 375)); // text position
+    text4.setPosition(sf::Vector2f(340, 420)); // text position
     
     sf::Text LvlOneMsg(font); // create a text with the font
-    LvlOneMsg.setString("You Dead Ass aint \nready for this shit");// the text
-    LvlOneMsg.setCharacterSize(48); // text size in pixels
+    LvlOneMsg.setString("Level 1");// the text
+    LvlOneMsg.setCharacterSize(80); // text size in pixels
     LvlOneMsg.setFillColor(sf::Color::White); // Text color
-    LvlOneMsg.setPosition(sf::Vector2f(200.f, 200.f)); // location for the text
+    LvlOneMsg.setPosition(sf::Vector2f(280.f, 220.f)); // location for the text
 
     //declare all the bools to allow us to click on the words
     bool play = false, rules = false, exit = false, back = false, backbounds = false;
@@ -64,32 +67,32 @@ int main()
             if (const auto* mouseMoved = event->getIf<sf::Event::MouseMoved>())
             {
                 // use this code if you ever need to check the x and y values of the mouse position
-               /* std::cout << "new mouse x: " << mouseMoved->position.x << std::endl;
+                /*std::cout << "new mouse x: " << mouseMoved->position.x << std::endl;
                 std::cout << "new mouse y: " << mouseMoved->position.y << std::endl;*/
-                if (180 < mouseMoved->position.y && mouseMoved->position.y < 225 && 345 < mouseMoved->position.x && mouseMoved->position.x < 430)
+                if (180 < mouseMoved->position.y && mouseMoved->position.y < 230 && 340 < mouseMoved->position.x && mouseMoved->position.x < 430)
                 {
                     //highlight play if hovering over it
                     text2.setFillColor(sf::Color::Green);
-                    text2.setCharacterSize(42);
+                    text2.setCharacterSize(55);
 
                     // allows us to click play
                     play = true;
                     
                 }
-                else if (280 < mouseMoved->position.y && mouseMoved->position.y < 325 && 345 < mouseMoved->position.x && mouseMoved->position.x < 450)
+                else if (300 < mouseMoved->position.y && mouseMoved->position.y < 350 && 340 < mouseMoved->position.x && mouseMoved->position.x < 455)
                 {
                     //highlight rules if hovering over it
                     text3.setFillColor(sf::Color::Green);
-                    text3.setCharacterSize(42);
+                    text3.setCharacterSize(55);
 
                     // allows us to click rules
                     rules = true;
                 }
-                else if (380 < mouseMoved->position.y && mouseMoved->position.y < 425 && 345 < mouseMoved->position.x && mouseMoved->position.x < 415)
+                else if (420 < mouseMoved->position.y && mouseMoved->position.y < 470 && 340 < mouseMoved->position.x && mouseMoved->position.x < 470)
                 {
                     //highlight exit if hovering over it
                     text4.setFillColor(sf::Color::Green);
-                    text4.setCharacterSize(42);
+                    text4.setCharacterSize(55);
 
                     // allows us to click exit
                     exit = true;
@@ -97,11 +100,11 @@ int main()
                 else
                 {
                     // reset play, rules, and exit text
-                    text2.setCharacterSize(40); // in pixels
+                    text2.setCharacterSize(50); // in pixels
                     text2.setFillColor(sf::Color::Red);
-                    text3.setCharacterSize(40); // in pixels
+                    text3.setCharacterSize(50); // in pixels
                     text3.setFillColor(sf::Color::Red);
-                    text4.setCharacterSize(40); // in pixels
+                    text4.setCharacterSize(50); // in pixels
                     text4.setFillColor(sf::Color::Red);
                     play = false;
                     rules = false;
@@ -222,6 +225,7 @@ int main()
         }
       
         window.clear();
+        window.draw(menuBackground);
         window.draw(text);
         window.draw(text2);
         window.draw(text3);

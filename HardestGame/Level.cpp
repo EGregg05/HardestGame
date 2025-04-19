@@ -27,8 +27,10 @@ bool levelOne(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text&
     while (window.isOpen())
     {
         // Poll events
-        while (const std::optional<sf::Event> event = window.pollEvent()) {
-            if (event->is<sf::Event::Closed>()) {
+        while (const std::optional<sf::Event> event = window.pollEvent()) 
+        {
+            if (event->is<sf::Event::Closed>()) 
+            {
                 window.close();
             }
         }
