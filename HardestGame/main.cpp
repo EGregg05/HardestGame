@@ -117,6 +117,7 @@ int main()
 
                 while (window.isOpen())
                 {
+                   
                     switch (levelTracker)
                     {
                     case 1:
