@@ -7,12 +7,13 @@
 #include <cstdlib>
 #include "Sprite.hpp"
 #include "Level.hpp"
+
 using std::cout;
 
 int main()
 {
     sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "HardGam");
-    Sprite* player = new Sprite;
+    Sprite<Player>* player = new Sprite<Player>;
 
     //Background
     sf::Texture texture;

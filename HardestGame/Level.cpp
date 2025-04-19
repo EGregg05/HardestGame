@@ -1,6 +1,6 @@
 #include "Level.hpp"
 
-bool levelOne(sf::RenderWindow& window, Sprite* player, sf::Sprite& backgroundTexture, sf::Text& lvlMsg)
+bool levelOne(sf::RenderWindow& window, Sprite<Player>* player, sf::Sprite& backgroundTexture, sf::Text& lvlMsg)
 {
     bool state = false;
     sf::Clock clock;
