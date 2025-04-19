@@ -5,27 +5,16 @@ bool levelOne(sf::RenderWindow& window, Sprite* player, sf::Sprite& backgroundTe
     bool state = false;
     sf::Clock clock;
     float displaytime = 2.0f;
-    player->updateX(50.0);
+    player->updateX(40.0);
     player->updateY(280.0);
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     while (window.isOpen())
     {
         // Poll events
-        while (const std::optional<sf::Event> event = window.pollEvent()) {
-            if (event->is<sf::Event::Closed>()) {
+        while (const std::optional<sf::Event> event = window.pollEvent()) 
+        {
+            if (event->is<sf::Event::Closed>()) 
+            {
                 window.close();
             }
         }
@@ -51,12 +40,12 @@ bool levelOne(sf::RenderWindow& window, Sprite* player, sf::Sprite& backgroundTe
         // Player Movement Input
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) && player->getY() < 540.0f)
         {
-            player->updateY(0.09f); // Move down
+            player->updateY(0.16f); // Move down
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && player->getY() > 20.0f)
         {
-            player->updateY(-0.09f); // Move up
+            player->updateY(-0.16f); // Move up
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
@@ -67,13 +56,13 @@ bool levelOne(sf::RenderWindow& window, Sprite* player, sf::Sprite& backgroundTe
             }
             if (player->getX() < 740.0f)
             {
-                player->updateX(0.09f);
+                player->updateX(0.16f);
             }
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && player->getX() > 20.0f)
         {
-            player->updateX(-0.09f); // Move left
+            player->updateX(-0.16f); // Move left
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))

@@ -16,7 +16,7 @@ int main()
 
     //Background
     sf::Texture texture;
-    texture.loadFromFile("BackgroundWEnds.png");
+    texture.loadFromFile("background.png");
     sf::Sprite background(texture);
 
     // declare the fonts and declare the different texts
