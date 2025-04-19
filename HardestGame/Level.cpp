@@ -1,20 +1,23 @@
 #include "Level.hpp"
 
-bool levelOne(sf::RenderWindow& window, Sprite* player, sf::Sprite& backgroundTexture, sf::Text& lvlMsg)
+bool levelOne(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text& lvlMsg)
 {
     bool state = false;
     sf::Clock clock;
     float displaytime = 2.0f;
-    player->updateX(50.0);
-    player->updateY(280.0);
+    sf::RectangleShape player({ 40.f, 40.f });
+    player.setPosition(sf::Vector2f(50.0, 280.0));
+    player.setFillColor(sf::Color::Red);
+    sf::RectangleShape tempWall({ 50.f, 50.f });
+    tempWall.setPosition(sf::Vector2f(300.0, 200.0));
+    tempWall.setFillColor(sf::Color::Black);
+    
 
 
 
 
 
-
-
-
+ 
 
 
 
@@ -44,36 +47,74 @@ bool levelOne(sf::RenderWindow& window, Sprite* player, sf::Sprite& backgroundTe
             lvlMsg.setString("");// removes the text
             window.clear();
             window.draw(backgroundTexture);
-            window.draw(player->getSprite());
+            window.draw(tempWall);
+            window.draw(player);
             window.display();
         }
-
+    
         // Player Movement Input
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) && player->getY() < 540.0f)
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) && player.getGlobalBounds().position.y < 540.0f)
         {
-            player->updateY(0.09f); // Move down
+            
+            if (player.getGlobalBounds().findIntersection(tempWall.getGlobalBounds()))
+            {
+                player.setPosition(sf::Vector2f(player.getGlobalBounds().position.x, tempWall.getGlobalBounds().position.y - 0.01));
+            }
+            else
+            {
+                player.move(sf::Vector2f(0.0f, 0.11f)); // Move down
+            }
+            
         }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && player->getY() > 20.0f)
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && player.getGlobalBounds().position.y > 20.0f)
         {
-            player->updateY(-0.09f); // Move up
+            if (player.getGlobalBounds().findIntersection(tempWall.getGlobalBounds()))
+            {
+                player.setPosition(sf::Vector2f(player.getGlobalBounds().position.x, tempWall.getGlobalBounds().position.y + tempWall.getSize().y + 0.01));
+            }
+            else
+            {
+                player.move(sf::Vector2f(0.0, -0.11)); // Move up
+            }
+            
+            
+            
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
         {
-            if (player->getX() > 685.0f)
+
+            if (player.getGlobalBounds().findIntersection(tempWall.getGlobalBounds()))
+            {
+                player.setPosition(sf::Vector2f(tempWall.getGlobalBounds().position.x - 0.01, player.getGlobalBounds().position.y));
+            }
+            else
+            {
+                if (player.getGlobalBounds().position.x < 740.0f)
+                {
+                    player.move(sf::Vector2f(0.11f, 0.0));
+                }
+            }
+            if (player.getGlobalBounds().position.x > 685.0f)
             {
                 return true; // Player completed the level
             }
-            if (player->getX() < 740.0f)
-            {
-                player->updateX(0.09f);
-            }
+           
         }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && player->getX() > 20.0f)
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && player.getGlobalBounds().position.x > 20.0f)
         {
-            player->updateX(-0.09f); // Move left
+
+            if (player.getGlobalBounds().findIntersection(tempWall.getGlobalBounds()))
+            {
+                player.setPosition(sf::Vector2f(tempWall.getGlobalBounds().position.x  + tempWall.getSize().x + 0.01, player.getGlobalBounds().position.y));
+            }
+            else
+            {
+                player.move(sf::Vector2f(-0.11f, 0.0)); // Move left
+            }
+            
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
@@ -158,7 +199,8 @@ bool levelOne(sf::RenderWindow& window, Sprite* player, sf::Sprite& backgroundTe
         // Draw everything
         window.clear();
         window.draw(backgroundTexture);
-        window.draw(player->getSprite());
+        window.draw(tempWall);
+        window.draw(player);
         window.display();
     }
     return false;

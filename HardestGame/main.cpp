@@ -5,6 +5,8 @@
 #include <stack>
 #include <ctime>
 #include <cstdlib>
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 #include "Sprite.hpp"
 #include "Level.hpp"
 using std::cout;
@@ -121,7 +123,7 @@ int main()
                     switch (levelTracker)
                     {
                     case 1:
-                        levelCheck = levelOne(window, player, background, LvlOneMsg);
+                        levelCheck = levelOne(window, background, LvlOneMsg);
                         if (levelCheck) 
                         {
                             levelTracker++;
