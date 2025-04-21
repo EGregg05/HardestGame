@@ -209,8 +209,8 @@ int main()
 
                         if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && backbounds) //exit rules
                         {
-                            text3.setCharacterSize(40);
-                            text3.setPosition(sf::Vector2f(350, 275));
+                            text3.setCharacterSize(50);
+                            text3.setPosition(sf::Vector2f(340, 300));
                             text3.setFillColor(sf::Color::Red);
                             back = true;
                             backbounds = false;

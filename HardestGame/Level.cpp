@@ -55,7 +55,7 @@ bool levelOne(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text&
             }
             else
             {
-                player.move(sf::Vector2f(0.0f, 0.11f)); // Move down
+                player.move(sf::Vector2f(0.0f, 0.15f)); // Move down
             }
             
         }
@@ -68,7 +68,7 @@ bool levelOne(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text&
             }
             else
             {
-                player.move(sf::Vector2f(0.0, -0.11)); // Move up
+                player.move(sf::Vector2f(0.0, -0.15)); // Move up
             }
             
             
@@ -86,7 +86,7 @@ bool levelOne(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text&
             {
                 if (player.getGlobalBounds().position.x < 740.0f)
                 {
-                    player.move(sf::Vector2f(0.11f, 0.0));
+                    player.move(sf::Vector2f(0.15f, 0.0));
                 }
             }
             if (player.getGlobalBounds().position.x > 685.0f)
@@ -105,7 +105,7 @@ bool levelOne(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text&
             }
             else
             {
-                player.move(sf::Vector2f(-0.11f, 0.0)); // Move left
+                player.move(sf::Vector2f(-0.15f, 0.0)); // Move left
             }
             
         }
