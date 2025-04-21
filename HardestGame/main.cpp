@@ -55,6 +55,12 @@ int main()
     LvlOneMsg.setFillColor(sf::Color::White); // Text color
     LvlOneMsg.setPosition(sf::Vector2f(280.f, 220.f)); // location for the text
 
+    sf::Text LvlTwoMsg(font);
+    LvlTwoMsg.setString("Level 2");
+    LvlTwoMsg.setCharacterSize(80);
+    LvlTwoMsg.setFillColor(sf::Color::White);
+    LvlTwoMsg.setPosition(sf::Vector2f(280.f, 220.f));
+
     //declare all the bools to allow us to click on the words
     bool play = false, rules = false, exit = false, back = false, backbounds = false;
 
@@ -133,8 +139,13 @@ int main()
                             clock.restart();
                         }
                         break;
-
                     case 2:
+                        levelCheck = levelTwo(window, gameBackground, LvlTwoMsg);
+                        if (levelCheck)
+                        {
+                            levelTracker++;
+                            clock.restart();
+                        }
                         // call levelTwo() here
                         break;
 
