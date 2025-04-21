@@ -5,3 +5,7 @@
 #include <iostream>
  
 bool levelOne(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text& lvlMsg);
+
+bool collisionWall(sf::RectangleShape& wall, Sprite* player);
+
+bool collisionEnemy(sf::CircleShape& enemy, Sprite* player);

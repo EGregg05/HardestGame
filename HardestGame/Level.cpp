@@ -11,15 +11,6 @@ bool levelOne(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text&
     sf::RectangleShape tempWall({ 50.f, 50.f });
     tempWall.setPosition(sf::Vector2f(300.0, 200.0));
     tempWall.setFillColor(sf::Color::Black);
-    
-
-
-
-
-
- 
-
-
 
 
 
@@ -206,4 +197,20 @@ bool levelOne(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text&
         window.display();
     }
     return false;
+}
+
+bool collisionWall(sf::RectangleShape& wall, Sprite* player) // return true if collision between objects
+{
+    bool state = false;
+
+
+    return state;
+}
+
+bool collisionEnemy(sf::CircleShape& enemy, Sprite* player) // return true if collision between objects
+{
+    bool state = false;
+
+
+    return state;
 }
