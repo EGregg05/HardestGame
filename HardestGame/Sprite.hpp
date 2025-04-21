@@ -5,64 +5,27 @@
 class Sprite : sf::Shape
 {
 public:
-	Sprite()
-	{
-		this->coin = 0;
-		this->x = 20.0f;
-		this->y = 20.0f;
-		this->object.setSize(sf::Vector2f(40.0f, 40.0f));
-		this->object.setFillColor(sf::Color::Red);
-		this->object.setPosition(sf::Vector2f(20.0f, 20.0f));
-	}
+	Sprite();
 
-	~Sprite()
-	{
+	~Sprite();
 
-	}
+	bool isCWall(sf::RectangleShape& wall);
 
-	float getX()
-	{
-		return this->x;
-	}
+	bool isCEnemy(sf::CircleShape& wall);
 
-	float getY()
-	{
-		return this->y;
-	}
+	float getX();
 
-	void updateX(float addx)
-	{
-		this->x += addx; 
-		this->object.move(sf::Vector2f(addx, 0.0f));
-	}
+	float getY();
 
-	void updateY(float addy)
-	{
-		this->y += addy; 
-		this->object.move(sf::Vector2f(0.0f, addy));
-	}
+	void updateX(float addx);
 
-	sf::RectangleShape& getSprite()
-	{
-		return this->object;
-	}
+	void updateY(float addy);
 
-	virtual std::size_t getPointCount() const override
-	{
-		return 4;
-	}
+	sf::RectangleShape& getSprite();
 
-	virtual sf::Vector2f getPoint(std::size_t index) const override
-	{
-		switch (index)
-		{
-		case 0: return sf::Vector2f(this->x, this->y); // Top Left Corner
-		case 1: return sf::Vector2f(this->x + this->object.getSize().x, this->y);  // Top-right corner
-		case 2: return sf::Vector2f(this->x + this->object.getSize().x, this->y + this->object.getSize().y);  // Bottom-right corner
-		case 3: return sf::Vector2f(this->x, this->y + this->object.getSize().y);  // Bottom-left corner
-		default: return sf::Vector2f(0.0f, 0.0f);  // Just in case, shouldn't be reached
-		}
-	}
+	virtual std::size_t getPointCount() const override;
+
+	virtual sf::Vector2f getPoint(std::size_t index) const override;
 
 private:
 	int coin;
