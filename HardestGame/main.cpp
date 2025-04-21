@@ -69,7 +69,10 @@ int main()
         while (const std::optional event = window.pollEvent())
         {
             if (event->is<sf::Event::Closed>())
+            {
                 window.close();
+            }
+
             if (const auto* mouseMoved = event->getIf<sf::Event::MouseMoved>())
             {
                 // use this code if you ever need to check the x and y values of the mouse position
@@ -125,18 +128,23 @@ int main()
                 float displaytime = 2.0f; // time for prelevel text duration
                 int levelTracker = 1;
                 bool levelCheck;
+                bool playLevel = true;
 
-                while (window.isOpen())
+                while (window.isOpen() && playLevel)
                 {
                    
                     switch (levelTracker)
                     {
                     case 1:
-                        levelCheck = levelOne(window,player, gameBackground, LvlOneMsg);
-                        if (levelCheck) 
+                        levelCheck = levelOne(window, gameBackground, LvlOneMsg);
+                        if (levelCheck)
                         {
                             levelTracker++;
                             clock.restart();
+                        }
+                        else
+                        {
+                            playLevel = false;
                         }
                         break;
                     case 2:
@@ -146,9 +154,13 @@ int main()
                             levelTracker++;
                             clock.restart();
                         }
+                        else
+                        {
+                            playLevel = false;
+                        }
                         // call levelTwo() here
                         break;
-
+                  
                         // etc.
                     }
                 }
@@ -245,4 +257,4 @@ int main()
         window.display();
     }
     
-}
+};
