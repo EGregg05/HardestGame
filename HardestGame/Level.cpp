@@ -1,26 +1,17 @@
 #include "Level.hpp"
 
-
-
-bool levelOne(sf::RenderWindow& window,Sprite* player, sf::Sprite& backgroundTexture, sf::Text& lvlMsg)
+bool levelOne(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text& lvlMsg)
 {
     bool state = false;
     sf::Clock clock;
     float displaytime = 2.0f;
-    player->getSprite().setPosition(sf::Vector2f(50.0, 280.0));
+    sf::RectangleShape player({ 40.f, 40.f });
+    player.setPosition(sf::Vector2f(50.0, 280.0));
+    player.setFillColor(sf::Color::Red);
     sf::RectangleShape tempWall({ 50.f, 50.f });
     tempWall.setPosition(sf::Vector2f(300.0, 200.0));
     tempWall.setFillColor(sf::Color::Black);
     
-
-
-
-
-
- 
-
-
-
 
 
 
@@ -50,34 +41,34 @@ bool levelOne(sf::RenderWindow& window,Sprite* player, sf::Sprite& backgroundTex
             window.clear();
             window.draw(backgroundTexture);
             window.draw(tempWall);
-            window.draw(player->getSprite());
+            window.draw(player);
             window.display();
         }
     
         // Player Movement Input
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) && player->getY() < 540.0f)
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) && player.getGlobalBounds().position.y < 540.0f)
         {
             
-            if (player->getSprite().getGlobalBounds().findIntersection(tempWall.getGlobalBounds()))
+            if (player.getGlobalBounds().findIntersection(tempWall.getGlobalBounds()))
             {
-                collisionWall(tempWall, player);
+                player.setPosition(sf::Vector2f(player.getGlobalBounds().position.x, tempWall.getGlobalBounds().position.y - 0.01));
             }
             else
             {
-                player->getSprite().move(sf::Vector2f(0.0f, 0.11f)); // Move down
+                player.move(sf::Vector2f(0.0f, 0.11f)); // Move down
             }
             
         }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && player->getY() > 20.0f)
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) && player.getGlobalBounds().position.y > 20.0f)
         {
-            if (player->getSprite().getGlobalBounds().findIntersection(tempWall.getGlobalBounds()))
+            if (player.getGlobalBounds().findIntersection(tempWall.getGlobalBounds()))
             {
-                collisionWall(tempWall, player);
+                player.setPosition(sf::Vector2f(player.getGlobalBounds().position.x, tempWall.getGlobalBounds().position.y + tempWall.getSize().y + 0.01));
             }
             else
             {
-                player->getSprite().move(sf::Vector2f(0.0f, -0.11f)); // Move up
+                player.move(sf::Vector2f(0.0, -0.11)); // Move up
             }
             
             
@@ -87,34 +78,34 @@ bool levelOne(sf::RenderWindow& window,Sprite* player, sf::Sprite& backgroundTex
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
         {
 
-            if (player->getSprite().getGlobalBounds().findIntersection(tempWall.getGlobalBounds()))
+            if (player.getGlobalBounds().findIntersection(tempWall.getGlobalBounds()))
             {
-                collisionWall(tempWall, player);
+                player.setPosition(sf::Vector2f(tempWall.getGlobalBounds().position.x - 0.01, player.getGlobalBounds().position.y));
             }
             else
             {
-                if (player->getX() < 740.0f)
+                if (player.getGlobalBounds().position.x < 740.0f)
                 {
-                    player->getSprite().move(sf::Vector2f(0.11f, 0.0f));
+                    player.move(sf::Vector2f(0.11f, 0.0));
                 }
             }
-            if (player->getX() > 685.0f)
+            if (player.getGlobalBounds().position.x > 685.0f)
             {
                 return true; // Player completed the level
             }
-
+           
         }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && player->getX() > 20.0f)
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && player.getGlobalBounds().position.x > 20.0f)
         {
 
-            if (player->getSprite().getGlobalBounds().findIntersection(tempWall.getGlobalBounds()))
+            if (player.getGlobalBounds().findIntersection(tempWall.getGlobalBounds()))
             {
-                collisionWall(tempWall, player);
+                player.setPosition(sf::Vector2f(tempWall.getGlobalBounds().position.x  + tempWall.getSize().x + 0.01, player.getGlobalBounds().position.y));
             }
             else
             {
-                player->getSprite().move(sf::Vector2f(-0.11f, 0.0f)); // Move left
+                player.move(sf::Vector2f(-0.11f, 0.0)); // Move left
             }
             
         }
@@ -202,15 +193,26 @@ bool levelOne(sf::RenderWindow& window,Sprite* player, sf::Sprite& backgroundTex
         window.clear();
         window.draw(backgroundTexture);
         window.draw(tempWall);
-        window.draw(player->getSprite());
+        window.draw(player);
         window.display();
     }
     return false;
 }
 
-bool levelTwo(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text& lvlMsg)
-{
+bool collisionWall(sf::RectangleShape& wall, Sprite* player) // return true if collision between objects
+        window.draw(backgroundTexture);
+        window.draw(tempWall);
+        window.draw(player->getSprite());
+        window.display();
+    return state;
+}
 
+bool collisionEnemy(sf::CircleShape& enemy, Sprite* player) // return true if collision between objects
+{
+    bool state = false;
+
+{
+    return state;
     bool state = false;
     sf::Clock clock;
     float displaytime = 2.0f;
@@ -410,6 +412,8 @@ bool levelTwo(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text&
 
 bool collisionWall(sf::RectangleShape& wall, Sprite* player) // return true if collision between objects
 {
+    bool state = false;
+
 
     return false;
 }
