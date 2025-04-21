@@ -126,7 +126,7 @@ int main()
                     switch (levelTracker)
                     {
                     case 1:
-                        levelCheck = levelOne(window, gameBackground, LvlOneMsg);
+                        levelCheck = levelOne(window,player, gameBackground, LvlOneMsg);
                         if (levelCheck) 
                         {
                             levelTracker++;

@@ -4,7 +4,7 @@
 #include "Sprite.hpp"
 #include <iostream>
  
-bool levelOne(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text& lvlMsg);
+bool levelOne(sf::RenderWindow& window,Sprite* player, sf::Sprite& backgroundTexture, sf::Text& lvlMsg);
 
 bool collisionWall(sf::RectangleShape& wall, Sprite* player);
 
