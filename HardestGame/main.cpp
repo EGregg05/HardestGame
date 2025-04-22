@@ -120,6 +120,7 @@ int main()
                 }
                 else
                 {
+                    //is this needed??? - yes definitely needed!!
                     // reset play, rules, and exit text
                     text2.setCharacterSize(50); // in pixels
                     text2.setFillColor(sf::Color::Red);
@@ -236,7 +237,7 @@ int main()
                         if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && backbounds) //exit rules
                         {
                             text3.setCharacterSize(50);
-                            text3.setPosition(sf::Vector2f(340, 300));
+                            text3.setPosition(sf::Vector2f(325, 380));
                             text3.setFillColor(sf::Color::Red);
                             back = true;
                             backbounds = false;
