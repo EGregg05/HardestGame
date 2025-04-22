@@ -43,15 +43,15 @@ int main()
     text8.setString("Select Level");
     text8.setCharacterSize(50);
     text8.setFillColor(sf::Color::Red);
-    text8.setPosition(sf::Vector2f(340, 210));
+    text8.setPosition(sf::Vector2f(250, 280));
     text3.setString("Rules");
     text3.setCharacterSize(50); // in pixels
     text3.setFillColor(sf::Color::Red);
-    text3.setPosition(sf::Vector2f(340, 300));
+    text3.setPosition(sf::Vector2f(325, 380));
     text4.setString("Exit");
     text4.setCharacterSize(50); // in pixels
     text4.setFillColor(sf::Color::Red); //text color
-    text4.setPosition(sf::Vector2f(340, 420)); // text position
+    text4.setPosition(sf::Vector2f(340, 480)); // text position
     
     sf::Text LvlOneMsg(font); // create a text with the font
     LvlOneMsg.setString("Level 1");// the text
@@ -115,6 +115,8 @@ int main()
                     // reset play, rules, and exit text
                     text2.setCharacterSize(50); // in pixels
                     text2.setFillColor(sf::Color::Red);
+                    text8.setCharacterSize(50);
+                    text8.setFillColor(sf::Color::Red);
                     text3.setCharacterSize(50); // in pixels
                     text3.setFillColor(sf::Color::Red);
                     text4.setCharacterSize(50); // in pixels
@@ -255,6 +257,7 @@ int main()
         window.draw(menuBackground);
         window.draw(text);
         window.draw(text2);
+        window.draw(text8);
         window.draw(text3);
         window.draw(text4);
 
