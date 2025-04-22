@@ -8,8 +8,3 @@ bool levelOne(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text&
 
 bool levelTwo(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text& lvlMsg);
 
-
-// make part of Sprite class
-bool collisionWall(sf::RectangleShape& wall, Sprite* player);
-
-bool collisionEnemy(sf::CircleShape& enemy, Sprite* player);

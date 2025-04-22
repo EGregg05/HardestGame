@@ -397,19 +397,3 @@ bool levelTwo(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text&
     }
     return false;
 }
-
-bool collisionWall(sf::RectangleShape& wall, Sprite* player) // return true if collision between objects
-{
-    bool state = false;
-    
-
-    return state;
-}
-
-bool collisionEnemy(sf::CircleShape& enemy, Sprite* player) // return true if collision between objects
-{
-    bool state = false;
-
-
-    return state;
-}
