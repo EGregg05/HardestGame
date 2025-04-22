@@ -66,7 +66,7 @@ int main()
     LvlTwoMsg.setPosition(sf::Vector2f(280.f, 220.f));
 
     //declare all the bools to allow us to click on the words
-    bool play = false, rules = false, exit = false, back = false, backbounds = false;
+    bool play = false, rules = false, exit = false, back = false, backbounds = false, select = false;
 
     while (window.isOpen())
     {
@@ -92,7 +92,15 @@ int main()
                     play = true;
                     
                 }
-                else if (300 < mouseMoved->position.y && mouseMoved->position.y < 350 && 340 < mouseMoved->position.x && mouseMoved->position.x < 455)
+                else if (280 < mouseMoved->position.y && mouseMoved->position.y < 330 && 250 < mouseMoved->position.x && mouseMoved->position.x < 560)
+                {
+                    text8.setFillColor(sf::Color::Green);
+                    text8.setCharacterSize(55);
+
+                    select = true;
+
+                }
+                else if (380 < mouseMoved->position.y && mouseMoved->position.y < 430 && 325 < mouseMoved->position.x && mouseMoved->position.x < 455)
                 {
                     //highlight rules if hovering over it
                     text3.setFillColor(sf::Color::Green);
@@ -101,7 +109,7 @@ int main()
                     // allows us to click rules
                     rules = true;
                 }
-                else if (420 < mouseMoved->position.y && mouseMoved->position.y < 470 && 340 < mouseMoved->position.x && mouseMoved->position.x < 470)
+                else if (480 < mouseMoved->position.y && mouseMoved->position.y < 530 && 340 < mouseMoved->position.x && mouseMoved->position.x < 470)
                 {
                     //highlight exit if hovering over it
                     text4.setFillColor(sf::Color::Green);
