@@ -13,7 +13,7 @@ using std::cout;
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "HardGam");
+    sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "HardGame");
     Sprite* player = new Sprite;
 
     //Background
@@ -28,7 +28,7 @@ int main()
     sf::Font font;
     font.openFromFile("arial_narrow_7.ttf");
     sf::Text text(font)/*worlds hardest game*/, text2(font)/*Play*/, text3(font)/*Rules*/
-        , text4(font)/*Exit*/, text5(font)/*Rule 1*/, text6(font)/*Rule 2*/, text7(font) /*Back*/; //different texts
+        , text4(font)/*Exit*/, text5(font)/*Rule 1*/, text6(font)/*Rule 2*/, text7(font) /*Back*/, text8(font); //different texts
 
     //define the texts (we may want to add a text class later)
     text.setString("Worlds Hardest Game");
@@ -40,6 +40,10 @@ int main()
     text2.setCharacterSize(50); // in pixels
     text2.setFillColor(sf::Color::Red);
     text2.setPosition(sf::Vector2f(340, 180));
+    text8.setString("Select Level");
+    text8.setCharacterSize(50);
+    text8.setFillColor(sf::Color::Red);
+    text8.setPosition(sf::Vector2f(340, 210));
     text3.setString("Rules");
     text3.setCharacterSize(50); // in pixels
     text3.setFillColor(sf::Color::Red);
