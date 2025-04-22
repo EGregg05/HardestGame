@@ -28,7 +28,7 @@ int main()
     sf::Font font;
     font.openFromFile("arial_narrow_7.ttf");
     sf::Text text(font)/*worlds hardest game*/, text2(font)/*Play*/, text3(font)/*Rules*/
-        , text4(font)/*Exit*/, text5(font)/*Rule 1*/, text6(font)/*Rule 2*/, text7(font) /*Back*/, text8(font); //different texts
+        , text4(font)/*Exit*/, text5(font)/*Rule 1*/, text6(font)/*Rule 2*/, text7(font) /*Back*/, text8(font), text9(font); //different texts
 
     //define the texts (we may want to add a text class later)
     text.setString("Worlds Hardest Game");
@@ -200,6 +200,12 @@ int main()
                 text7.setCharacterSize(30); // in pixels
                 text7.setFillColor(sf::Color::Red); //text color
                 text7.setPosition(sf::Vector2f(50, 50)); // text position
+                //add keys used to play
+                text9.setString("(To move use keys W, A, S, & D)");
+                text9.setCharacterSize(30);
+                text9.setFillColor(sf::Color::Red);
+                text9.setPosition(sf::Vector2f(200, 500));
+
 
                 // make sure back is always false once entering the rules again
                 back = false;
@@ -250,6 +256,7 @@ int main()
                     window.draw(text5);
                     window.draw(text6);
                     window.draw(text7);
+                    window.draw(text9);
                     window.display();
                 }
             }
