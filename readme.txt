@@ -1,6 +1,10 @@
 Video:
 https://youtu.be/Url9ZgMJokc
 
+Game instructions:
+Use WASD to move
+Go from the start to the finish without touching the blue balls.
+
 Github:
 https://github.com/EGregg05/HardestGame   
 
