@@ -9,9 +9,9 @@ public:
 
 	~Sprite();
 
-	bool isCWall(sf::RectangleShape& wall);
+	bool isCWall(sf::RectangleShape& wall, sf::Vector2f offset);
 
-	bool isCEnemy(sf::CircleShape& wall);
+	bool isCEnemy(sf::CircleShape& wall, sf::Vector2f offset);
 
 	float getX();
 
@@ -20,6 +20,10 @@ public:
 	void updateX(float addx);
 
 	void updateY(float addy);
+
+	void setX(float nx);
+
+	void setY(float ny);
 
 	sf::RectangleShape& getSprite();
 
