@@ -236,6 +236,7 @@ int main()
                     }
 
                     window.clear();
+                    window.draw(menuBackground);
                     window.draw(text7);
                     window.draw(text9);
                     window.draw(text10);
@@ -356,6 +357,7 @@ int main()
                     }
                    
                     window.clear();
+                    window.draw(menuBackground);
                     window.draw(text3);
                     window.draw(text5);
                     window.draw(text6);
