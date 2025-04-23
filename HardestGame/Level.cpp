@@ -56,6 +56,7 @@ bool levelOne(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text&
         // Shows level start message
         if (clock.getElapsedTime().asSeconds() < displaytime)
         {
+            lvlMsg.setString("Level 1");
             window.clear();
             window.draw(lvlMsg); // draws the msg
             window.display(); // displays
@@ -241,6 +242,8 @@ bool levelOne(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text&
                     }
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && exit) // for now exit is going to resume as well until we can figure out how to return to main menu
                     {
+                        clock.restart();
+                        clock.stop();
                         return false;
                     }
                 }
@@ -334,6 +337,7 @@ bool levelTwo(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text&
         // Shows level start message
         if (clock.getElapsedTime().asSeconds() < displaytime)
         {
+            lvlMsg.setString("Level 2");
             window.clear();
             window.draw(lvlMsg); // draws the msg
             window.display(); // displays
@@ -555,6 +559,8 @@ bool levelTwo(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text&
                     }
                     if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && exit) // for now exit is going to resume as well until we can figure out how to return to main menu
                     {
+                        clock.restart();
+                        clock.stop();
                         return false;
                     }
                 }
