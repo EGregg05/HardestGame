@@ -175,9 +175,11 @@ int main()
                         }
                         // call levelTwo() here
                         break;
-                  
+                    case 3:
+                        playLevel = false;
                         // etc.
                     }
+                   
                 }
             }
             
