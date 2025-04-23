@@ -5,7 +5,8 @@ bool Menu::isMainMenu(sf::RenderWindow &window, sf::Sprite gameBack, sf::Sprite 
 {
 
     sf::Text text(font)/*worlds hardest game*/, text2(font)/*Play*/, text3(font)/*Rules*/
-        , text4(font)/*Exit*/, text5(font)/*Rule 1*/, text6(font)/*Rule 2*/, text7(font) /*Back*/, text8(font)/*Select Level*/, text9(font)/*moving instructions*/; //different texts
+        , text4(font)/*Exit*/, text5(font)/*Rule 1*/, text6(font)/*Rule 2*/, text7(font) /*Back*/, text8(font)/*Select Level*/, text9(font)/*moving instructions*/
+        , text10(font)/*Level 1 select*/, text11(font)/*level 2 select*/; //different texts
 
     //define the texts (we may want to add a text class later)
     text.setString("Worlds Hardest Game");
@@ -117,14 +118,14 @@ bool Menu::isMainMenu(sf::RenderWindow &window, sf::Sprite gameBack, sf::Sprite 
                 text7.setCharacterSize(30); // in pixels
                 text7.setFillColor(sf::Color::Red); //text color
                 text7.setPosition(sf::Vector2f(50, 50)); // text position
-                text9.setString("lvl 1");
-                text9.setCharacterSize(40); // in pixels
-                text9.setFillColor(sf::Color::Red); //text color
-                text9.setPosition(sf::Vector2f(100, 100)); // text position
-                text10.setString("lvl 2");
+                text10.setString("lvl 1");
                 text10.setCharacterSize(40); // in pixels
                 text10.setFillColor(sf::Color::Red); //text color
-                text10.setPosition(sf::Vector2f(250, 100)); // text position
+                text10.setPosition(sf::Vector2f(100, 100)); // text position
+                text11.setString("lvl 2");
+                text11.setCharacterSize(40); // in pixels
+                text11.setFillColor(sf::Color::Red); //text color
+                text11.setPosition(sf::Vector2f(250, 100)); // text position
 
                 back = false;
 
@@ -150,15 +151,15 @@ bool Menu::isMainMenu(sf::RenderWindow &window, sf::Sprite gameBack, sf::Sprite 
                             }
                             else if (110 < mouseMoved->position.y && mouseMoved->position.y < 145 && 90 < mouseMoved->position.x && mouseMoved->position.x < 175)
                             {
-                                text9.setFillColor(sf::Color::Green);
-                                text9.setCharacterSize(42);
+                                text10.setFillColor(sf::Color::Green);
+                                text10.setCharacterSize(42);
 
                                 lvl1bounds = true;
                             }
                             else if (110 < mouseMoved->position.y && mouseMoved->position.y < 145 && 245 < mouseMoved->position.x && mouseMoved->position.x < 335)
                             {
-                                text10.setFillColor(sf::Color::Green);
-                                text10.setCharacterSize(42);
+                                text11.setFillColor(sf::Color::Green);
+                                text11.setCharacterSize(42);
 
                                 lvl2bounds = true;
                             }
@@ -192,7 +193,7 @@ bool Menu::isMainMenu(sf::RenderWindow &window, sf::Sprite gameBack, sf::Sprite 
                             text9.setFillColor(sf::Color::Red); //text color
                             text9.setPosition(sf::Vector2f(100, 100));
 
-                            levelOne(window, gameBackground, LvlOneMsg);
+                            levelOne(window, gameBack, LvlOneMsg);
 
                             lvl1bounds = false;
                         }
@@ -202,7 +203,7 @@ bool Menu::isMainMenu(sf::RenderWindow &window, sf::Sprite gameBack, sf::Sprite 
                             text10.setFillColor(sf::Color::Red); //text color
                             text10.setPosition(sf::Vector2f(250, 100)); // text position
 
-                            levelTwo(window, gameBackground, LvlTwoMsg);
+                            levelTwo(window, gameBack, LvlTwoMsg);
 
                             lvl2bounds = false;
                         }
@@ -210,12 +211,13 @@ bool Menu::isMainMenu(sf::RenderWindow &window, sf::Sprite gameBack, sf::Sprite 
                     }
 
                     window.clear();
-                    window.draw(menuBackground);
+                    window.draw(menuBack);
                     window.draw(text7);
                     window.draw(text9);
                     window.draw(text10);
                     window.display();
                 }
+            }
 
             // Play Loop
             if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && play) // we may need to implement a "pause" or a back button to the gameplay later
