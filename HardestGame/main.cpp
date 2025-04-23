@@ -8,7 +8,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include "Sprite.hpp"
-#include "Level.hpp"
+//#include "Level.hpp"
+#include "Menu.h"
 using std::cout;
 
 int main()
