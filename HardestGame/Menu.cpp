@@ -43,7 +43,7 @@ bool Menu::isMainMenu(sf::RenderWindow &window, sf::Sprite gameBack, sf::Sprite 
     LvlTwoMsg.setFillColor(sf::Color::White);
     LvlTwoMsg.setPosition(sf::Vector2f(280.f, 220.f));
 
-    bool play = false, rules = false, exit = false, back = false, backbounds = false, select = false;
+    bool play = false, rules = false, exit = false, back = false, backbounds = false, select = false, lvl1bounds = false, lvl2bounds = false;
 
     while (window.isOpen())
     {
@@ -168,10 +168,10 @@ bool Menu::isMainMenu(sf::RenderWindow &window, sf::Sprite gameBack, sf::Sprite 
                                 // reset back and backbounds if mouse is not hovering over back
                                 text7.setFillColor(sf::Color::Red);
                                 text7.setCharacterSize(30);
+                                text11.setCharacterSize(40); // in pixels
+                                text11.setFillColor(sf::Color::Red); //text color
                                 text10.setCharacterSize(40); // in pixels
                                 text10.setFillColor(sf::Color::Red); //text color
-                                text9.setCharacterSize(40); // in pixels
-                                text9.setFillColor(sf::Color::Red); //text color
                                 backbounds = false;
                                 lvl1bounds = false;
                                 lvl2bounds = false;
@@ -189,9 +189,9 @@ bool Menu::isMainMenu(sf::RenderWindow &window, sf::Sprite gameBack, sf::Sprite 
                         }
                         else if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && lvl1bounds)
                         {
-                            text9.setCharacterSize(40); // in pixels
-                            text9.setFillColor(sf::Color::Red); //text color
-                            text9.setPosition(sf::Vector2f(100, 100));
+                            text10.setCharacterSize(40); // in pixels
+                            text10.setFillColor(sf::Color::Red); //text color
+                            text10.setPosition(sf::Vector2f(100, 100));
 
                             levelOne(window, gameBack, LvlOneMsg);
 
@@ -199,9 +199,9 @@ bool Menu::isMainMenu(sf::RenderWindow &window, sf::Sprite gameBack, sf::Sprite 
                         }
                         else if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && lvl2bounds)
                         {
-                            text10.setCharacterSize(40); // in pixels
-                            text10.setFillColor(sf::Color::Red); //text color
-                            text10.setPosition(sf::Vector2f(250, 100)); // text position
+                            text11.setCharacterSize(40); // in pixels
+                            text11.setFillColor(sf::Color::Red); //text color
+                            text11.setPosition(sf::Vector2f(250, 100)); // text position
 
                             levelTwo(window, gameBack, LvlTwoMsg);
 
@@ -213,8 +213,8 @@ bool Menu::isMainMenu(sf::RenderWindow &window, sf::Sprite gameBack, sf::Sprite 
                     window.clear();
                     window.draw(menuBack);
                     window.draw(text7);
-                    window.draw(text9);
                     window.draw(text10);
+                    window.draw(text11);
                     window.display();
                 }
             }
