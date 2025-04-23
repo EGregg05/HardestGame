@@ -109,6 +109,7 @@ bool Menu::isMainMenu(sf::RenderWindow& window, sf::Sprite gameBack, sf::Sprite 
                     text4.setFillColor(sf::Color::Red);
                     play = false;
                     rules = false;
+                    select = false;
                     exit = false;
                 }
             }
@@ -271,7 +272,7 @@ bool Menu::isMainMenu(sf::RenderWindow& window, sf::Sprite gameBack, sf::Sprite 
             {
                 // setting the texts for the rules
                 text3.setCharacterSize(60);
-                text3.setPosition(sf::Vector2f(350, 50));
+                text3.setPosition(sf::Vector2f(325, 50));
                 text3.setFillColor(sf::Color::Red);
                 text5.setString("Rule 1: DONT TOUCH THE BLUE BALLS.");
                 text5.setCharacterSize(40); // in pixels
@@ -337,6 +338,7 @@ bool Menu::isMainMenu(sf::RenderWindow& window, sf::Sprite gameBack, sf::Sprite 
                     }
 
                     window.clear();
+                    window.draw(menuBack);
                     window.draw(text3);
                     window.draw(text5);
                     window.draw(text6);
