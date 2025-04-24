@@ -117,25 +117,7 @@ bool Menu::isMainMenu(sf::RenderWindow& window, sf::Sprite gameBack, sf::Sprite 
             }
             if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && select)
             {
-                text7.setString("Back");
-                text7.setCharacterSize(30); // in pixels
-                text7.setFillColor(sf::Color::Red); //text color
-                text7.setPosition(sf::Vector2f(50, 50)); // text position
-                text10.setString("lvl 1");
-                text10.setCharacterSize(40); // in pixels
-                text10.setFillColor(sf::Color::Red); //text color
-                text10.setPosition(sf::Vector2f(100, 100)); // text position
-                text11.setString("lvl 2");
-                text11.setCharacterSize(40); // in pixels
-                text11.setFillColor(sf::Color::Red); //text color
-                text11.setPosition(sf::Vector2f(250, 100)); // text position
-
-                back = false;
-
-                while (back == false)
-                {
-
-                }
+                selectMenu.selectLevel(window, back, menuBack, gameBack, LvlOneMsg, LvlTwoMsg, text8, font);
             }
 
             // Play Loop
