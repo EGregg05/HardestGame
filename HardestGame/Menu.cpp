@@ -307,6 +307,10 @@ void Menu::selectLevel(sf::RenderWindow& window, bool& back, sf::Sprite menuBack
     text3.setCharacterSize(40); // in pixels
     text3.setFillColor(sf::Color::Red); //text color
     text3.setPosition(sf::Vector2f(250, 100)); // text position
+    text4.setString("lvl 3");
+    text4.setCharacterSize(40); // in pixels
+    text4.setFillColor(sf::Color::Red); //text color
+    text4.setPosition(sf::Vector2f(400, 100)); // text position
 
     back = false;
 
@@ -325,7 +329,7 @@ void Menu::selectLevel(sf::RenderWindow& window, bool& back, sf::Sprite menuBack
                 {
                     // highlight the back button if mouse is in bounds
                     text1.setFillColor(sf::Color::Green);
-                    text1.setCharacterSize(32);
+                    text1.setCharacterSize(42);
 
                     // allow us to click back
                     backbounds = true;
@@ -355,14 +359,17 @@ void Menu::selectLevel(sf::RenderWindow& window, bool& back, sf::Sprite menuBack
                 {
                     // reset back and backbounds if mouse is not hovering over back
                     text1.setFillColor(sf::Color::Red);
-                    text1.setCharacterSize(30);
+                    text1.setCharacterSize(40);
                     text3.setCharacterSize(40); // in pixels
                     text3.setFillColor(sf::Color::Red); //text color
                     text2.setCharacterSize(40); // in pixels
                     text2.setFillColor(sf::Color::Red); //text color
+                    text4.setFillColor(sf::Color::Red);
+                    text4.setCharacterSize(40);
                     backbounds = false;
                     lvl1bounds = false;
                     lvl2bounds = false;
+                    lvl3bounds = false;
                 }
 
             }
