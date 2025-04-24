@@ -11,7 +11,7 @@ Github:
 https://github.com/EGregg05/HardestGame   
 
 Contributors:
-Ajay Perish Section 5
+Ajay Parrish Section 5
 Ethan Gregg Section 4
 Felix Disanto Section 3
 Mason Stull Section 12
