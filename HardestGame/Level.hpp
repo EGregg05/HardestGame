@@ -10,3 +10,6 @@ bool levelOne(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text&
 
 bool levelTwo(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text& lvlMsg);
 
+bool levelThree(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Text& lvlMsg);
+
+

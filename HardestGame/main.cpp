@@ -28,7 +28,7 @@ int main()
     sf::Font font;
     font.openFromFile("arial_narrow_7.ttf");
     sf::Text text(font)/*worlds hardest game*/, text2(font)/*Play*/, text3(font)/*Rules*/
-        , text4(font)/*Exit*/, text5(font)/*Rule 1*/, text6(font)/*Rule 2*/, text7(font) /*Back*/, text8(font) /*Level select*/, text9(font)/*level select level 1*/, text10(font)/*level select level 2*/; //different texts
+        , text4(font)/*Exit*/, text5(font)/*Rule 1*/, text6(font)/*Rule 2*/, text7(font) /*Back*/, text8(font) /*Level select*/, text9(font)/*level select level 1*/, text10(font)/*level select level 2*/, text11(font) /*level select 3*/; //different texts
 
     //define the texts (we may want to add a text class later)
     text.setString("Worlds Hardest Game");
@@ -66,8 +66,14 @@ int main()
     LvlTwoMsg.setFillColor(sf::Color::White);
     LvlTwoMsg.setPosition(sf::Vector2f(280.f, 220.f));
 
+    sf::Text LvlThreeMsg(font);
+    LvlThreeMsg.setString("Level 3");
+    LvlThreeMsg.setCharacterSize(80);
+    LvlThreeMsg.setFillColor(sf::Color::White);
+    LvlThreeMsg.setPosition(sf::Vector2f(280.f, 220.f));
+
     //declare all the bools to allow us to click on the words
-    bool play = false, rules = false, exit = false, back = false, backbounds = false, select = false, lvl1bounds = false, lvl2bounds = false;
+    bool play = false, rules = false, exit = false, back = false, backbounds = false, select = false, lvl1bounds = false, lvl2bounds = false, lvl3bounds = false;
 
     while (window.isOpen())
     {
@@ -151,6 +157,10 @@ int main()
                 text10.setCharacterSize(40); // in pixels
                 text10.setFillColor(sf::Color::Red); //text color
                 text10.setPosition(sf::Vector2f(250, 100)); // text position
+                text11.setString("lvl 3");
+                text11.setCharacterSize(40); // in pixels
+                text11.setFillColor(sf::Color::Red); //text color
+                text11.setPosition(sf::Vector2f(400, 100)); // text position
 
                 back = false;
 
@@ -188,6 +198,13 @@ int main()
 
                                 lvl2bounds = true;
                             }
+                            else if (110 < mouseMoved->position.y && mouseMoved->position.y < 145 && 395 < mouseMoved->position.x && mouseMoved->position.x < 485)
+                            {
+                                text11.setFillColor(sf::Color::Green);
+                                text11.setCharacterSize(42);
+
+                                lvl3bounds = true;
+                            }
                             else
                             {
                                 // reset back and backbounds if mouse is not hovering over back
@@ -195,11 +212,14 @@ int main()
                                 text7.setCharacterSize(30);
                                 text10.setCharacterSize(40); // in pixels
                                 text10.setFillColor(sf::Color::Red); //text color
+                                text11.setCharacterSize(40); // in pixels
+                                text11.setFillColor(sf::Color::Red); //text color
                                 text9.setCharacterSize(40); // in pixels
                                 text9.setFillColor(sf::Color::Red); //text color
                                 backbounds = false;
                                 lvl1bounds = false;
                                 lvl2bounds = false;
+                                lvl3bounds = false;
                             }
 
                         }
@@ -232,7 +252,16 @@ int main()
                             
                             lvl2bounds = false;
                         }
+                        else if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && lvl3bounds)
+                        {
+                            text11.setCharacterSize(40); // in pixels
+                            text11.setFillColor(sf::Color::Red); //text color
+                            text11.setPosition(sf::Vector2f(400, 100)); // text position
 
+                            levelThree(window, gameBackground, LvlThreeMsg);
+
+                            lvl3bounds = false;
+                        }
                     }
 
                     window.clear();
@@ -240,6 +269,7 @@ int main()
                     window.draw(text7);
                     window.draw(text9);
                     window.draw(text10);
+                    window.draw(text11);
                     window.display();
                 }
             }
@@ -285,6 +315,20 @@ int main()
                         // call levelTwo() here
                         break;
                     case 3:
+                        levelCheck = levelThree(window, gameBackground, LvlThreeMsg);
+                        if (levelCheck)
+                        {
+                            levelTracker++;
+                            clock.restart();
+                        }
+                        else
+                        {
+                            playLevel = false;
+                            play = false;
+                        }
+
+                        break;
+                    case 4:
                         playLevel = false;
                         // etc. WARNING: when you code a new level make sure to implement it into the level select feature as well
                     }
