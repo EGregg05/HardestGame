@@ -179,7 +179,7 @@ bool Menu::isMainMenu(sf::RenderWindow& window, sf::Sprite gameBack, sf::Sprite 
                         }
 
                         break;
-                    case 3:
+                    case 4:
                         playLevel = false;
                         // etc.
                     }
