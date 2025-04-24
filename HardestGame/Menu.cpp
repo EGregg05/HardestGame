@@ -150,6 +150,7 @@ bool Menu::isMainMenu(sf::RenderWindow& window, sf::Sprite gameBack, sf::Sprite 
                         else
                         {
                             playLevel = false;
+                            play = false;
                         }
                         break;
                     case 2:
@@ -162,8 +163,8 @@ bool Menu::isMainMenu(sf::RenderWindow& window, sf::Sprite gameBack, sf::Sprite 
                         else
                         {
                             playLevel = false;
+                            play = false;
                         }
-                        // call levelTwo() here
                         break;
                     case 3:
                         levelCheck = levelThree(window, gameBack, LvlThreeMsg);
@@ -181,6 +182,7 @@ bool Menu::isMainMenu(sf::RenderWindow& window, sf::Sprite gameBack, sf::Sprite 
                         break;
                     case 4:
                         playLevel = false;
+                        play = false;
                         // etc.
                     }
 
@@ -221,7 +223,10 @@ bool Menu::isMainMenu(sf::RenderWindow& window, sf::Sprite gameBack, sf::Sprite 
                     while (const std::optional event = window.pollEvent())
                     {
                         if (event->is<sf::Event::Closed>())
+                        {
                             window.close();
+                        }
+
                         if (const auto* mouseMoved = event->getIf<sf::Event::MouseMoved>())
                         {
                             //use for mouse coordinates
@@ -245,16 +250,16 @@ bool Menu::isMainMenu(sf::RenderWindow& window, sf::Sprite gameBack, sf::Sprite 
                             }
 
                         }
+                    }
 
-                        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && backbounds) //exit rules
-                        {
-                            text3.setCharacterSize(50);
-                            text3.setPosition(sf::Vector2f(325, 380));
-                            text3.setFillColor(sf::Color::Red);
-                            back = true;
-                            backbounds = false;
-                        }
 
+                    if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && backbounds) //exit rules
+                    {
+                        text3.setCharacterSize(50);
+                        text3.setPosition(sf::Vector2f(325, 380));
+                        text3.setFillColor(sf::Color::Red);
+                        back = true;
+                        backbounds = false;
                     }
 
                     window.clear();
