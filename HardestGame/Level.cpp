@@ -695,41 +695,6 @@ bool levelThree(sf::RenderWindow& window, sf::Sprite& backgroundTexture, sf::Tex
     std::vector<sf::CircleShape*> enemysH3 = { &enemy13, &enemy14 };
 
 
-
-    //// part one 
-    //sf::CircleShape enemy1(20.f);
-    //enemy1.setFillColor(sf::Color::Blue);
-    //enemy1.setPosition({ 160.f, 21.f });
-    //sf::CircleShape enemy2(20.f);
-    //enemy2.setFillColor(sf::Color::Blue);
-    //enemy2.setPosition({ 240.f, 539.f });
-    //sf::CircleShape enemy3(20.f);
-    //enemy3.setFillColor(sf::Color::Blue);
-    //enemy3.setPosition({ 320.f, 21.f });
-    //int enemyVdir = 1;
-
-    //std::vector<sf::CircleShape*> enemysV = { &enemy1, &enemy2, &enemy3 };
-
-    ////part two
-    //sf::CircleShape enemy4(20.f);
-    //enemy4.setFillColor(sf::Color::Blue);
-    //enemy4.setPosition({ 401.f, 100.f });
-    //sf::CircleShape enemy5(20.f);
-    //enemy5.setFillColor(sf::Color::Blue);
-    //enemy5.setPosition({ 639.f, 180.f });
-    //sf::CircleShape enemy6(20.f);
-    //enemy6.setFillColor(sf::Color::Blue);
-    //enemy6.setPosition({ 401.f, 260.f });
-    //sf::CircleShape enemy7(20.f);
-    //enemy7.setFillColor(sf::Color::Blue);
-    //enemy7.setPosition({ 639.f, 340.f });
-    //sf::CircleShape enemy8(20.f);
-    //enemy8.setFillColor(sf::Color::Blue);
-    //enemy8.setPosition({ 401.f, 420.f });
-    //int enemyHdir = 1;
-
-    //std::vector<sf::CircleShape*> enemysH = { &enemy4, &enemy5, &enemy6, &enemy7, &enemy8 };
-
     while (window.isOpen())
     {
         // Poll events
