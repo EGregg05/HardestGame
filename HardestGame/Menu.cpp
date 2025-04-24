@@ -5,8 +5,9 @@ bool Menu::isMainMenu(sf::RenderWindow &window, sf::Sprite gameBack, sf::Sprite 
 {
 
     sf::Text text(font)/*worlds hardest game*/, text2(font)/*Play*/, text3(font)/*Rules*/
-        , text4(font)/*Exit*/, text5(font)/*Rule 1*/, text6(font)/*Rule 2*/, text7(font) /*Back*/, text8(font)/*Select Level*/, text9(font)/*moving instructions*/
-        , text10(font)/*Level 1 select*/, text11(font)/*level 2 select*/; //different texts
+        , text4(font)/*Exit*/, text5(font)/*Rule 1*/, text6(font)/*Rule 2*/, text7(font) /*Back*/, text8(font)/*Select Level*/, text9(font)/*moving instructions*/;
+       // , text10(font)/*Level 1 select*/, text11(font)/*level 2 select*/; //different texts
+    Menu selectMenu;
 
     //define the texts (we may want to add a text class later)
     text.setString("Worlds Hardest Game");
@@ -108,115 +109,14 @@ bool Menu::isMainMenu(sf::RenderWindow &window, sf::Sprite gameBack, sf::Sprite 
                     text4.setCharacterSize(50); // in pixels
                     text4.setFillColor(sf::Color::Red);
                     play = false;
+                    select = false;
                     rules = false;
                     exit = false;
                 }
             }
             if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && select)
             {
-                text7.setString("Back");
-                text7.setCharacterSize(30); // in pixels
-                text7.setFillColor(sf::Color::Red); //text color
-                text7.setPosition(sf::Vector2f(50, 50)); // text position
-                text10.setString("lvl 1");
-                text10.setCharacterSize(40); // in pixels
-                text10.setFillColor(sf::Color::Red); //text color
-                text10.setPosition(sf::Vector2f(100, 100)); // text position
-                text11.setString("lvl 2");
-                text11.setCharacterSize(40); // in pixels
-                text11.setFillColor(sf::Color::Red); //text color
-                text11.setPosition(sf::Vector2f(250, 100)); // text position
-
-                back = false;
-
-                while (back == false)
-                {
-                    while (const std::optional event = window.pollEvent())
-                    {
-                        if (event->is<sf::Event::Closed>())
-                            window.close();
-                        if (const auto* mouseMoved = event->getIf<sf::Event::MouseMoved>())
-                        {
-                            //use for mouse coordinates
-                            /*std::cout << "new mouse x: " << mouseMoved->position.x << std::endl;
-                            std::cout << "new mouse y: " << mouseMoved->position.y << std::endl;*/
-                            if (45 < mouseMoved->position.y && mouseMoved->position.y < 85 && 45 < mouseMoved->position.x && mouseMoved->position.x < 110)
-                            {
-                                // highlight the back button if mouse is in bounds
-                                text7.setFillColor(sf::Color::Green);
-                                text7.setCharacterSize(32);
-
-                                // allow us to click back
-                                backbounds = true;
-                            }
-                            else if (110 < mouseMoved->position.y && mouseMoved->position.y < 145 && 90 < mouseMoved->position.x && mouseMoved->position.x < 175)
-                            {
-                                text10.setFillColor(sf::Color::Green);
-                                text10.setCharacterSize(42);
-
-                                lvl1bounds = true;
-                            }
-                            else if (110 < mouseMoved->position.y && mouseMoved->position.y < 145 && 245 < mouseMoved->position.x && mouseMoved->position.x < 335)
-                            {
-                                text11.setFillColor(sf::Color::Green);
-                                text11.setCharacterSize(42);
-
-                                lvl2bounds = true;
-                            }
-                            else
-                            {
-                                // reset back and backbounds if mouse is not hovering over back
-                                text7.setFillColor(sf::Color::Red);
-                                text7.setCharacterSize(30);
-                                text11.setCharacterSize(40); // in pixels
-                                text11.setFillColor(sf::Color::Red); //text color
-                                text10.setCharacterSize(40); // in pixels
-                                text10.setFillColor(sf::Color::Red); //text color
-                                backbounds = false;
-                                lvl1bounds = false;
-                                lvl2bounds = false;
-                            }
-
-                        }
-
-                        if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && backbounds) //exit level select
-                        {
-                            text8.setCharacterSize(50);
-                            text8.setPosition(sf::Vector2f(250, 280));
-                            text8.setFillColor(sf::Color::Red);
-                            back = true;
-                            backbounds = false;
-                        }
-                        else if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && lvl1bounds)
-                        {
-                            text10.setCharacterSize(40); // in pixels
-                            text10.setFillColor(sf::Color::Red); //text color
-                            text10.setPosition(sf::Vector2f(100, 100));
-
-                            levelOne(window, gameBack, LvlOneMsg);
-
-                            lvl1bounds = false;
-                        }
-                        else if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && lvl2bounds)
-                        {
-                            text11.setCharacterSize(40); // in pixels
-                            text11.setFillColor(sf::Color::Red); //text color
-                            text11.setPosition(sf::Vector2f(250, 100)); // text position
-
-                            levelTwo(window, gameBack, LvlTwoMsg);
-
-                            lvl2bounds = false;
-                        }
-
-                    }
-
-                    window.clear();
-                    window.draw(menuBack);
-                    window.draw(text7);
-                    window.draw(text10);
-                    window.draw(text11);
-                    window.display();
-                }
+                selectMenu.selectLevel(window, back, menuBack, gameBack, LvlOneMsg, LvlTwoMsg, text8, font);
             }
 
             // Play Loop
@@ -371,6 +271,116 @@ bool Menu::isMainMenu(sf::RenderWindow &window, sf::Sprite gameBack, sf::Sprite 
 bool Menu::isPauseMenu()
 {
 	return false;
+}
+
+void Menu::selectLevel(sf::RenderWindow &window, bool &back, sf::Sprite menuBack, sf::Sprite gameBack, sf::Text LvlOneMsg, sf::Text LvlTwoMsg, sf::Text &selectButton, sf::Font font)
+{
+    sf::Text text1(font), text2(font), text3(font);
+    bool backbounds = false, lvl1bounds = false, lvl2bounds = false;
+
+    text1.setString("Back");
+    text1.setCharacterSize(30); // in pixels
+    text1.setFillColor(sf::Color::Red); //text color
+    text1.setPosition(sf::Vector2f(50, 50)); // text position
+    text2.setString("lvl 1");
+    text2.setCharacterSize(40); // in pixels
+    text2.setFillColor(sf::Color::Red); //text color
+    text2.setPosition(sf::Vector2f(100, 100)); // text position
+    text3.setString("lvl 2");
+    text3.setCharacterSize(40); // in pixels
+    text3.setFillColor(sf::Color::Red); //text color
+    text3.setPosition(sf::Vector2f(250, 100)); // text position
+
+    back = false;
+
+    while (back == false)
+    {
+        while (const std::optional event = window.pollEvent())
+        {
+            if (event->is<sf::Event::Closed>())
+                window.close();
+            if (const auto* mouseMoved = event->getIf<sf::Event::MouseMoved>())
+            {
+                //use for mouse coordinates
+                /*std::cout << "new mouse x: " << mouseMoved->position.x << std::endl;
+                std::cout << "new mouse y: " << mouseMoved->position.y << std::endl;*/
+                if (45 < mouseMoved->position.y && mouseMoved->position.y < 85 && 45 < mouseMoved->position.x && mouseMoved->position.x < 110)
+                {
+                    // highlight the back button if mouse is in bounds
+                    text1.setFillColor(sf::Color::Green);
+                    text1.setCharacterSize(32);
+
+                    // allow us to click back
+                    backbounds = true;
+                }
+                else if (110 < mouseMoved->position.y && mouseMoved->position.y < 145 && 90 < mouseMoved->position.x && mouseMoved->position.x < 175)
+                {
+                    text2.setFillColor(sf::Color::Green);
+                    text2.setCharacterSize(42);
+
+                    lvl1bounds = true;
+                }
+                else if (110 < mouseMoved->position.y && mouseMoved->position.y < 145 && 245 < mouseMoved->position.x && mouseMoved->position.x < 335)
+                {
+                    text3.setFillColor(sf::Color::Green);
+                    text3.setCharacterSize(42);
+
+                    lvl2bounds = true;
+                }
+                else
+                {
+                    // reset back and backbounds if mouse is not hovering over back
+                    text1.setFillColor(sf::Color::Red);
+                    text1.setCharacterSize(30);
+                    text3.setCharacterSize(40); // in pixels
+                    text3.setFillColor(sf::Color::Red); //text color
+                    text2.setCharacterSize(40); // in pixels
+                    text2.setFillColor(sf::Color::Red); //text color
+                    backbounds = false;
+                    lvl1bounds = false;
+                    lvl2bounds = false;
+                }
+
+            }
+
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && backbounds) //exit level select
+            {
+                selectButton.setCharacterSize(50);
+                selectButton.setPosition(sf::Vector2f(250, 280));
+                selectButton.setFillColor(sf::Color::Red);
+                back = true;
+                backbounds = false;
+            }
+            else if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && lvl1bounds)
+            {
+                text2.setCharacterSize(40); // in pixels
+                text2.setFillColor(sf::Color::Red); //text color
+                text2.setPosition(sf::Vector2f(100, 100));
+
+                levelOne(window, gameBack, LvlOneMsg);
+
+                lvl1bounds = false;
+            }
+            else if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && lvl2bounds)
+            {
+                text3.setCharacterSize(40); // in pixels
+                text3.setFillColor(sf::Color::Red); //text color
+                text3.setPosition(sf::Vector2f(250, 100)); // text position
+
+                levelTwo(window, gameBack, LvlTwoMsg);
+
+                lvl2bounds = false;
+            }
+
+        }
+
+        window.clear();
+        window.draw(menuBack);
+        window.draw(text1);
+        window.draw(text2);
+        window.draw(text3);
+        window.display();
+    }
 }
 
 void Menu::displayRules()

@@ -25,7 +25,7 @@ public:
 	//need to return from main menu function bool values for: play, select level, rules, and exit
 	bool isMainMenu(sf::RenderWindow &window, sf::Sprite gameBack, sf::Sprite menuBack, sf::Font font);
 	bool isPauseMenu();
-	int selectLevel();
+	void selectLevel(sf::RenderWindow &window, bool& back, sf::Sprite menuBack, sf::Sprite gameBack, sf::Text LvlOneMsg, sf::Text LvlTwoMsg, sf::Text& selectButton, sf::Font font);
 	void displayRules();
 	
 
