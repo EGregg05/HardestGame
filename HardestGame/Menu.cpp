@@ -5,8 +5,8 @@ bool Menu::isMainMenu(sf::RenderWindow& window, sf::Sprite gameBack, sf::Sprite 
 {
 
     sf::Text text(font)/*worlds hardest game*/, text2(font)/*Play*/, text3(font)/*Rules*/
-        , text4(font)/*Exit*/, text5(font)/*Rule 1*/, text6(font)/*Rule 2*/, text7(font) /*Back*/, text8(font)/*Select Level*/, text9(font)/*moving instructions*/
-        , text10(font)/*Level 1 select*/, text11(font)/*level 2 select*/; //different texts
+        , text4(font)/*Exit*/, text5(font)/*Rule 1*/, text6(font)/*Rule 2*/, text7(font) /*Back*/, text8(font)/*Select Level*/, text9(font)/*moving instructions*/;
+        //, text10(font)/*Level 1 select*/, text11(font)/*level 2 select*/; //different texts
 
     Menu selectMenu;
 
@@ -45,7 +45,13 @@ bool Menu::isMainMenu(sf::RenderWindow& window, sf::Sprite gameBack, sf::Sprite 
     LvlTwoMsg.setFillColor(sf::Color::White);
     LvlTwoMsg.setPosition(sf::Vector2f(280.f, 220.f));
 
-    bool play = false, rules = false, exit = false, back = false, backbounds = false, select = false, lvl1bounds = false, lvl2bounds = false;
+    sf::Text LvlThreeMsg(font);
+    LvlThreeMsg.setString("Level 3");
+    LvlThreeMsg.setCharacterSize(80);
+    LvlThreeMsg.setFillColor(sf::Color::White);
+    LvlThreeMsg.setPosition(sf::Vector2f(280.f, 220.f));
+
+    bool play = false, rules = false, exit = false, back = false, backbounds = false, select = false;
 
     while (window.isOpen())
     {
@@ -117,7 +123,7 @@ bool Menu::isMainMenu(sf::RenderWindow& window, sf::Sprite gameBack, sf::Sprite 
             }
             if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && select)
             {
-                selectMenu.selectLevel(window, back, menuBack, gameBack, LvlOneMsg, LvlTwoMsg, text8, font);
+                selectMenu.selectLevel(window, back, menuBack, gameBack, LvlOneMsg, LvlTwoMsg, LvlThreeMsg, text8, font);
             }
 
             // Play Loop
@@ -158,6 +164,20 @@ bool Menu::isMainMenu(sf::RenderWindow& window, sf::Sprite gameBack, sf::Sprite 
                             playLevel = false;
                         }
                         // call levelTwo() here
+                        break;
+                    case 3:
+                        levelCheck = levelThree(window, gameBack, LvlThreeMsg);
+                        if (levelCheck)
+                        {
+                            levelTracker++;
+                            clock.restart();
+                        }
+                        else
+                        {
+                            playLevel = false;
+                            play = false;
+                        }
+
                         break;
                     case 3:
                         playLevel = false;
@@ -270,10 +290,10 @@ bool Menu::isMainMenu(sf::RenderWindow& window, sf::Sprite gameBack, sf::Sprite 
     return true;
 }
 
-void Menu::selectLevel(sf::RenderWindow& window, bool& back, sf::Sprite menuBack, sf::Sprite gameBack, sf::Text LvlOneMsg, sf::Text LvlTwoMsg, sf::Text& selectButton, sf::Font font)
+void Menu::selectLevel(sf::RenderWindow& window, bool& back, sf::Sprite menuBack, sf::Sprite gameBack, sf::Text LvlOneMsg, sf::Text LvlTwoMsg, sf::Text LvlThreeMsg, sf::Text& selectButton, sf::Font font)
 {
-    sf::Text text1(font), text2(font), text3(font);
-    bool backbounds = false, lvl1bounds = false, lvl2bounds = false;
+    sf::Text text1(font), text2(font), text3(font), text4(font);
+    bool backbounds = false, lvl1bounds = false, lvl2bounds = false, lvl3bounds = false;
 
     text1.setString("Back");
     text1.setCharacterSize(30); // in pixels
@@ -324,6 +344,13 @@ void Menu::selectLevel(sf::RenderWindow& window, bool& back, sf::Sprite menuBack
 
                     lvl2bounds = true;
                 }
+                else if (110 < mouseMoved->position.y && mouseMoved->position.y < 145 && 395 < mouseMoved->position.x && mouseMoved->position.x < 485)
+                {
+                    text4.setFillColor(sf::Color::Green);
+                    text4.setCharacterSize(42);
+
+                    lvl3bounds = true;
+                }
                 else
                 {
                     // reset back and backbounds if mouse is not hovering over back
@@ -368,6 +395,16 @@ void Menu::selectLevel(sf::RenderWindow& window, bool& back, sf::Sprite menuBack
 
                 lvl2bounds = false;
             }
+            else if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && lvl3bounds)
+            {
+                text4.setCharacterSize(40); // in pixels
+                text4.setFillColor(sf::Color::Red); //text color
+                text4.setPosition(sf::Vector2f(400, 100)); // text position
+
+                levelThree(window, gameBack, LvlThreeMsg);
+
+                lvl3bounds = false;
+            }
 
         }
 
@@ -376,6 +413,7 @@ void Menu::selectLevel(sf::RenderWindow& window, bool& back, sf::Sprite menuBack
         window.draw(text1);
         window.draw(text2);
         window.draw(text3);
+        window.draw(text4);
         window.display();
     }
 }
