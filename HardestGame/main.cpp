@@ -8,7 +8,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include "Sprite.hpp"
-#include "Level.hpp"
+//#include "Level.hpp"
+#include "Menu.h"
 using std::cout;
 
 int main()
@@ -27,6 +28,7 @@ int main()
     // declare the fonts and declare the different texts
     sf::Font font;
     font.openFromFile("arial_narrow_7.ttf");
+
     sf::Text text(font)/*worlds hardest game*/, text2(font)/*Play*/, text3(font)/*Rules*/
         , text4(font)/*Exit*/, text5(font)/*Rule 1*/, text6(font)/*Rule 2*/, text7(font) /*Back*/, text8(font) /*Level select*/, text9(font)/*level select level 1*/, text10(font)/*level select level 2*/, text11(font) /*level select 3*/; //different texts
 
@@ -428,5 +430,9 @@ int main()
 
         window.display();
     }
-    
+
+    Menu mainMenu;
+
+    mainMenu.isMainMenu(window, gameBackground, menuBackground, font);
+  
 };
